@@ -23,10 +23,25 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //sceneView.showsStatistics = true
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let sphere = SCNSphere(radius: 0.2)
+        
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: "art.scnassets/moon.jpg")
+        
+        sphere.materials = [material]
+        
+        let node = SCNNode()
+        node.position = SCNVector3(x: 0, y: 0.1, z: -0.5)
+        
+        node.geometry = sphere
+        
+        //add node to our scene
+        sceneView.scene.rootNode.addChildNode(node)
+        
         
         // Set the scene to the view
-        sceneView.scene = scene
+        //sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
